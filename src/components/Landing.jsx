@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -48,15 +49,15 @@ export class Landing extends Component {
   render() {
     return (
       <div className="flex items-center justify-center w-screen  h-screen  ">
-        <div className="border-purple-900 flex lg:flex-row flex-col items-center justify-evenly lg:justify-evenly w-full  h-screen ">
-          <div class="bg-odes-img  flex items-center justify-center p-10 sm:p-0 sm:w-2/5 p-2 w-full h-screen border-red-900">
+        <div className=" flex lg:flex-row flex-col items-center justify-evenly lg:justify-evenly w-full  h-full sm:h-screen ">
+          <div class="bg-odes-img bg-cover flex items-center justify-center sm:w-2/5  w-full h-full border-red-900">
             <h1 class="font-extrabold text-transparent text-7xl md:text-8xl bg-clip-text bg-gradient-to-r from-red-light to-blue-light h-auto">
               odezssa
             </h1>
           </div>
 
           {this.state.a === false ? (
-            <div class="animate-pulse flex flex-col items-center justify-center lg:w-2/5 lg:h-screen w-full text-center ">
+            <div class="animate-pulse flex flex-col items-center justify-center lg:w-2/5 lg:h-screen  w-full text-center ">
               <h1 className="text-5xl lg:text-6xl xl:text-8xl">
                 find what you need
               </h1>
@@ -66,16 +67,16 @@ export class Landing extends Component {
               </h3>
             </div>
           ) : (
-            <div class="flex flex-col items-center justify-center lg:w-2/5 lg:h-screen w-4/5  h-2/5  ">
-              <button className="h-10 rounded-lg w-full p-10 mb-5  flex items-center justify-center bg-gradient-to-b from-grad to-black">
-                <h1 class="text-white text-5xl mr-7 ">log in</h1>
+            <div class="flex flex-col items-center justify-center lg:w-2/5 lg:h-screen w-4/5    ">
+              <button className="h-10 rounded-lg w-full p-10 mb-4  flex items-center justify-center bg-gradient-to-b from-grad to-black">
+                <h1 class="text-white text-5xl  ">log in</h1>
               </button>
 
               <button
                 onClick={this.handleClose}
-                className="h-10 rounded-lg w-full p-10 mt-5 flex items-center justify-center bg-gradient-to-r from-red-light to-blue-light"
+                className="h-10 rounded-lg w-full p-10 mt-4 flex items-center justify-center bg-gradient-to-r from-red-light to-blue-light"
               >
-                <h1 class="text-white text-5xl mr-7 ">sign up</h1>
+                <h1 class="text-white text-5xl   ">sign up</h1>
               </button>
             </div>
           )}
@@ -90,7 +91,7 @@ export class Landing extends Component {
           <Box
             sx={{
               ...style,
-              width: 600,
+              width: 400,
               justifyContent: "center",
               alignItems: "center",
             }}
@@ -98,14 +99,18 @@ export class Landing extends Component {
             <h2 id="parent-modal-title">SIGN UP</h2>
             <div class="flex flex-col items-center justify-center   w-full  h-2/5 mt-7 ">
               <button className="h-10 rounded-lg w-full p-10 mb-2  flex items-center justify-center bg-gradient-to-b from-grad to-black">
-                <h1 class="text-white text-5xl ">shopper</h1>
+                <Link to="/signup/shopper">
+                  <h1 class="text-white text-5xl ">shopper</h1>
+                </Link>
               </button>
 
               <button
                 onClick={this.handleClose}
                 className="h-10 rounded-lg w-full p-10 mt-2 flex items-center justify-center bg-gradient-to-r from-red-light to-blue-light"
               >
-                <h1 class="text-white text-5xl  ">seller</h1>
+                <Link to="/signup/seller">
+                  <h1 class="text-white text-5xl  ">seller</h1>{" "}
+                </Link>
               </button>
             </div>
           </Box>
