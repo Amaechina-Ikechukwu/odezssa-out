@@ -90,14 +90,16 @@ export default function Shopper() {
               <Avatar sx={{ width: 150, height: 150 }}>shopper</Avatar>
               <div className="w-full flex flex-row justify-evenly">
                 <button className="h-10 rounded-lg lg:w-2/5 w-2/5 p-6 mt-2  flex items-center justify-center bg-gray-500">
-                  <h1 class="text-white text-2xl md:text-2xl ">use avatar</h1>
+                  <h1 class="text-white text-1xl md:text-2xl ">use avatar</h1>
                 </button>
                 <button className="h-10 rounded-lg lg:w-2/5 w-2/5 p-6 mt-2  flex items-center justify-center bg-gray-700">
-                  <h1 class="text-white text-2xl md:text-2xl ">upload image</h1>
+                  <h1 class="text-white text-1xl md:text-2xl ">upload image</h1>
                 </button>
               </div>
               <button className="h-10 rounded-lg w-4/5 p-8 mt-14 flex items-center justify-evenly bg-gradient-to-r from-red-light to-blue-light">
-                <h1 class="text-white text-4xl  ">start shopping</h1>
+                <h1 class="text-white text-2xl md:text-4xl  ">
+                  start shopping
+                </h1>
                 <ArrowNarrowRightIcon className="w-20 text-white h-20" />
               </button>
             </div>
