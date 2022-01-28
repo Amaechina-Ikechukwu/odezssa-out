@@ -1,17 +1,20 @@
 import { TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import Categories from "./Categories";
+import Promoted from "./Promoted";
 import Vendors from "./Vendors";
 
 export default function Front() {
   return (
-    <Box width={"100%"}>
-      <Box
+    <Box width={"100%"} className="h-full ">
+      {/* <Box
         display={"grid"}
         alignItems={"center"}
         justifyContent={"center"}
-        width={"100%"}
+        fixed
       >
+        {" "}
         <Box width={"100%"}>
           <TextField
             id="outlined-basic"
@@ -21,9 +24,18 @@ export default function Front() {
             sx={{ width: "70vw" }}
           />
         </Box>
-      </Box>
-      <Box className="">
-        <Vendors />
+      </Box> */}
+
+      <Box className="h-full flex flex-col justify-evenly">
+        <Box>
+          <Vendors />
+        </Box>
+        <Box>
+          <Categories />
+        </Box>
+        <Box>
+          <Promoted />
+        </Box>
       </Box>
     </Box>
   );

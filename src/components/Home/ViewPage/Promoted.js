@@ -8,15 +8,15 @@ import { Button, Typography } from "@mui/material";
 import { shadows } from "@mui/system";
 import "./vendors.css";
 
-export default function Vendors() {
+export default function Promoted() {
   return (
     <Box>
-      <Typography className="p-1">Vendors</Typography>
+      <Typography className="p-1">Promoted</Typography>
       <Box
         width={"100%"}
         className=".card md:p-2 flex items-center justify-center  md:justify-start"
       >
-        <Box className=" w-4/5 h-3/4 md:h-1/4 md:w-1/4 md:h-2/4 shadow-md rounded-md">
+        <Box className=" w-4/5 h-3/4 md:h-1/4 md:w-1/4 shadow-md rounded-md">
           <Box
             height={"40px"}
             className="bg-gradient-to-r from-red-light to-blue-light "
