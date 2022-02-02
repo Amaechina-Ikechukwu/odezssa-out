@@ -10,8 +10,7 @@ import "./vendors.css";
 
 export default function Promoted() {
   return (
-    <Box>
-      <Typography className="p-1">Promoted</Typography>
+    <Box className="container flex mx-auto overflow-x-auto">
       <Box
         width={"100%"}
         className=".card md:p-2 flex items-center justify-center  md:justify-start"
@@ -28,6 +27,57 @@ export default function Promoted() {
           </Box>
         </Box>
       </Box>
+
+      <Box
+        width={"100%"}
+        className=".card md:p-2 flex items-center justify-center  md:justify-start"
+      >
+        <Box className=" w-4/5 h-3/4 md:h-1/4 md:w-1/4 shadow-md rounded-md">
+          <Box
+            height={"40px"}
+            className="bg-gradient-to-r from-red-light to-blue-light "
+          ></Box>
+
+          <Box bgcolor={"white"} padding={2}>
+            <Typography variant="h5">Bag</Typography>
+            <Typography variant="h6">Price : $20</Typography>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box
+        width={"100%"}
+        className=".card md:p-2 flex items-center justify-center  md:justify-start"
+      >
+        <Box className=" w-4/5 h-3/4 md:h-1/4 md:w-1/4 shadow-md rounded-md">
+          <Box
+            height={"40px"}
+            className="bg-gradient-to-r from-red-light to-blue-light "
+          ></Box>
+
+          <Box bgcolor={"white"} padding={2}>
+            <Typography variant="h5">Bag</Typography>
+            <Typography variant="h6">Price : $20</Typography>
+          </Box>
+        </Box>
+      </Box>
+      <Box
+        width={"100%"}
+        className=".card md:p-2 flex items-center justify-center  md:justify-start"
+      >
+        <Box className=" w-4/5 h-3/4 md:h-1/4 md:w-1/4 shadow-md rounded-md">
+          <Box
+            height={"40px"}
+            className="bg-gradient-to-r from-red-light to-blue-light "
+          ></Box>
+
+          <Box bgcolor={"white"} padding={2}>
+            <Typography variant="h5">Bag</Typography>
+            <Typography variant="h6">Price : $20</Typography>
+          </Box>
+        </Box>
+      </Box>
+      {/* ////////////////////////////////////////////////////////// */}
     </Box>
   );
 }

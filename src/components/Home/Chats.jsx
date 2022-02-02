@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function Chats() {
-  return <div>llllllll</div>;
+  return <div className="h-screen">llllllll</div>;
 }

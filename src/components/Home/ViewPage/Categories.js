@@ -11,7 +11,6 @@ import "./vendors.css";
 export default function Categories() {
   return (
     <Box>
-      <Typography className="p-1">Categories</Typography>
       <Box
         width={"100%"}
         className=".card md:p-2 flex items-center justify-center  md:justify-start"

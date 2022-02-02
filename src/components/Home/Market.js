@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function Market() {
-  return <div>jjjjjjj</div>;
+  return <div className="h-screen">jjjjjjj</div>;
 }

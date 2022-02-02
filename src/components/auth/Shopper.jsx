@@ -3,8 +3,11 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Avatar } from "@mui/material";
 import { ArrowNarrowRightIcon } from "@heroicons/react/outline";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Shopper() {
+  // const { user } = useAuth0();
+  // console.log(user);
   return (
     <Box
       class="flex flex-col w-screen h-screen p-1 lg:p-5"
