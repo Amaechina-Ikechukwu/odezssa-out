@@ -12,7 +12,7 @@ ReactDOM.render(
   //   domain={domain}
   //   clientId={clientId}
   //   redirectUri={window.location.origin}
-  // >
+  // >1
   <>
     {" "}
     <App />

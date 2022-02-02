@@ -18,55 +18,25 @@ import { initializeApp } from "firebase/app";
 import Landing2 from "./components/Landing2.jsx";
 
 // TODO: Replace the following with your app's Firebase project configuration
-const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MES_ID,
-  appId: process.env.APP_ID,
-};
+// const firebaseConfig = {
+//   apiKey: process.env.API_KEY,
+//   authDomain: process.env.AUTH_DOMAIN,
+//   projectId: process.env.PROJECT_ID,
+//   storageBucket: process.env.STORAGE_BUCKET,
+//   messagingSenderId: process.env.MES_ID,
+//   appId: process.env.APP_ID,
+// };
 
-const app = initializeApp(firebaseConfig);
-const domain = process.env.AUTH0_DOMAIN;
-const clientId = process.env.AUTH0_CLIENT_ID;
-var see;
+// const app = initializeApp(firebaseConfig);
+// const domain = process.env.AUTH0_DOMAIN;
+// const clientId = process.env.AUTH0_CLIENT_ID;
+// var see;
 
 function App() {
-  // const { isAuthenticated } = useAuth0();
-  // const [checks, setChecks] = React.useState();
-  // // React.useEffect(() => {
-  // if (localStorage.getItem("saved") !== null) {
-  //   setChecks(localStorage.getItem("saved"));
-  // }
-  //   setChecks(localStorage.getItem("saved"));
-  //   console.log(setChecks(localStorage.getItem("saved")));
-  // }, []);
-
-  // if (!isAuthenticated) {
-  //   return (
-  //     <Router>
-  //       <Switch>
-  //         <Route path="/" component={Landing} />
-  //       </Switch>
-  //     </Router>
-  //   );
-  // }
-  // if (checks == undefined && isAuthenticated) {
-  //   return (
-  //     <Router>
-  //       <Switch>
-  //         <Route path="/" component={Landing2} />
-  //         <Route path="/signup/shopper" component={Shopper} />
-  //       </Switch>
-  //     </Router>
-  //   );
-  // }
-
   return (
     <Router>
       <Box bgcolor={"white"} className="flex flex-col lg:flex-row  ">
-        <Menu className="fixed" />
+        {/* <Menu className="fixed" /> */}
 
         <Box
           sx={{ overflow: "auto" }}
@@ -82,6 +52,35 @@ function App() {
         </Box>
       </Box>{" "}
     </Router>
+    // const { isAuthenticated } = useAuth0();
+    // const [checks, setChecks] = React.useState();
+    // // React.useEffect(() => {
+    // if (localStorage.getItem("saved") !== null) {
+    //   setChecks(localStorage.getItem("saved"));
+    // }
+    //   setChecks(localStorage.getItem("saved"));
+    //   console.log(setChecks(localStorage.getItem("saved")));
+    // }, []);
+
+    // if (!isAuthenticated) {
+    //   return (
+    //     <Router>
+    //       <Switch>
+    //         <Route path="/" component={Landing} />
+    //       </Switch>
+    //     </Router>
+    //   );
+    // }
+    // if (checks == undefined && isAuthenticated) {
+    //   return (
+    //     <Router>
+    //       <Switch>
+    //         <Route path="/" component={Landing2} />
+    //         <Route path="/signup/shopper" component={Shopper} />
+    //       </Switch>
+    //     </Router>
+    //   );
+    // }
   );
 }
 
