@@ -36,7 +36,7 @@ function App() {
   return (
     <Router>
       <Box bgcolor={"white"} className="flex flex-col lg:flex-row  ">
-        {/* <Menu className="fixed" /> */}
+        <Menu className="fixed" />
 
         <Box
           sx={{ overflow: "auto" }}
@@ -50,7 +50,7 @@ function App() {
             <Route path="/user/profile" component={Profile} />
           </Switch>
         </Box>
-      </Box>{" "}
+      </Box>
     </Router>
     // const { isAuthenticated } = useAuth0();
     // const [checks, setChecks] = React.useState();

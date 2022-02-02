@@ -13,12 +13,22 @@ ReactDOM.render(
   //   clientId={clientId}
   //   redirectUri={window.location.origin}
   // >1
-  <>
-    {" "}
-    <App />
-  </>,
+  // <>
+  //   {" "}
+  //   <App />
+  // </>,
 
-  //  </Auth0Provider>
+  // //  </Auth0Provider>
+  // document.getElementById("root")
+  <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    redirectUri={window.location.origin}
+  >
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Auth0Provider>,
   document.getElementById("root")
 );
 
