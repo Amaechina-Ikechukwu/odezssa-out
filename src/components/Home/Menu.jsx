@@ -21,7 +21,7 @@ import { ShoppingBagIcon } from "@heroicons/react/solid";
 import { ViewListIcon } from "@heroicons/react/solid";
 import { ChatIcon } from "@heroicons/react/solid";
 import { ClipboardListIcon, PhoneIcon } from "@heroicons/react/outline";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 const style = {
   position: "absolute",
@@ -30,6 +30,21 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: "80vw",
 
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+  borderRadius: 5,
+  backgroundColor: "white",
+};
+const styles = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "black",
+  border: "2px solid #CEA1A1",
   boxShadow: 24,
   pt: 2,
   px: 4,
@@ -54,12 +69,19 @@ function LinkTab(props) {
 export default function Menu() {
   const [value, setValue] = React.useState(0);
   const [open, setOpen] = React.useState(false);
+  const [openx, setOpenx] = React.useState(false);
   const { logout } = useAuth0();
+  let history = useHistory();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   const handleClose = () => {
     setOpen(!open);
+  };
+  const Push = () => {
+    localStorage.setItem("saved", "saved");
+    history.push("/signup");
+    console.log("pushed");
   };
 
   return (
@@ -104,7 +126,7 @@ export default function Menu() {
             <NavLink
               activeClassName=" bg-gray-500 hover:bg-gray-300  text-blue-50  p-4 rounded-md flex flex-row justify-evenly w-full mb-2 shadow-md opacity-80"
               className="hover:bg-gray-100 hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-evenly items-center w-full mb-2"
-              to="/"
+              to="/home"
             >
               <HomeIcon width={20} className=" mr-1 " />
               <p className="text-1xl font-normal">Home </p>
@@ -112,7 +134,7 @@ export default function Menu() {
             <NavLink
               activeClassName=" bg-gradient-to-r from-red-light to-blue-light text-blue-50  p-4 rounded-md flex flex-row justify-evenly  w-full mb-2 opacity-80"
               className="hover:bg-gray-100 hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-evenly items-center w-full mb-2"
-              to="/home/market"
+              to="/market"
             >
               <ShoppingBagIcon width={20} className=" mr-1" />
               <p className="text-1xl  font-normal">Market </p>
@@ -120,7 +142,7 @@ export default function Menu() {
             <NavLink
               activeClassName=" bg-gradient-to-r from-red-light to-blue-light text-blue-50  p-4 rounded-md flex flex-row justify-evenly w-full mb-2 opacity-80"
               className="hover:bg-gray-100 hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-evenly items-center w-full mb-2"
-              to="/home/wishlist"
+              to="/wishlist"
             >
               <ClipboardListIcon width={20} className="mr-1" />
               <p className="text-1xl  font-normal">Wishlist </p>
@@ -128,7 +150,7 @@ export default function Menu() {
             <NavLink
               activeClassName=" bg-gradient-to-r from-red-light to-blue-light text-blue-50  p-4 rounded-md flex flex-row justify-evenly  w-full mb-2 opacity-80"
               className="hover:bg-gray-100 hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-evenly items-center w-full mb-2"
-              to="/home/chats"
+              to="/chats"
             >
               <ChatAlt2Icon width={20} className=" mr-1" />
               <p className="text-1xl  font-normal">Messages </p>
@@ -137,7 +159,7 @@ export default function Menu() {
         </Box>
         <Divider></Divider>
 
-        <Box className="p-2 w-full bg-gray-200 shadow-inner shadow-lg rounded-lg w-full mt-3">
+        <Box className="p-2 w-full bg-gray-100 shadow-inner shadow-lg rounded-lg w-full mt-3 hidden lg:block">
           <button
             onClick={() => logout()}
             className="hover:bg-gray-100 hover:text-slate-50 text-gray-400 p-2 rounded-md flex flex-row justify-evenly items-center w-full "
@@ -180,7 +202,7 @@ export default function Menu() {
               onClick={handleClose}
               activeClassName=" bg-gradient-to-r from-red-light to-blue-light text-blue-50  p-4 rounded-md flex flex-row justify-center  mb-2"
               className="hover:bg-gradient-to-r from-red-light to-blue-light hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-center items-center mb-2"
-              to="/"
+              to="/home"
             >
               <HomeIcon width={30} className=" mr-5" />
               <p className=" font-bold text-3xl">Home </p>
@@ -189,7 +211,7 @@ export default function Menu() {
               onClick={handleClose}
               activeClassName=" bg-gradient-to-r from-red-light to-blue-light text-blue-50  p-4 rounded-md flex flex-row justify-center  mb-2"
               className="hover:bg-gradient-to-r from-red-light to-blue-light hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-center items-center mb-2"
-              to="/home/market"
+              to="/market"
             >
               <ShoppingBagIcon width={30} className=" mr-5" />
               <p className=" font-bold text-3xl">Market </p>
@@ -198,7 +220,7 @@ export default function Menu() {
               onClick={handleClose}
               activeClassName=" bg-gradient-to-r from-red-light to-blue-light text-blue-50  p-4 rounded-md flex flex-row justify-center  mb-2"
               className="hover:bg-gradient-to-r from-red-light to-blue-light hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-center items-center mb-2"
-              to="/home/wishlist"
+              to="/wishlist"
             >
               <ClipboardListIcon width={30} className=" mr-5 " />
               <p className=" font-bold text-3xl">Wishlist </p>
@@ -207,7 +229,7 @@ export default function Menu() {
               onClick={handleClose}
               activeClassName=" bg-gradient-to-r from-red-light to-blue-light text-blue-50  p-4 rounded-md flex flex-row justify-center  mb-2"
               className="hover:bg-gradient-to-r from-red-light to-blue-light hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-center items-center mb-2"
-              to="/home/chats"
+              to="/chats"
             >
               <ChatAlt2Icon width={30} className=" mr-5" />
               <p className=" font-bold text-3xl">Messages </p>
@@ -222,6 +244,42 @@ export default function Menu() {
               </button>
             </Box>
           </Box>
+        </Box>
+      </Modal>
+      <Modal
+        open={openx}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+        className="bg-gray-700"
+      >
+        <Box
+          sx={{
+            ...styles,
+            width: 400,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <p className="text-2xl font-bold text-gray-400 mb-2">
+            We've noticed you haven't created a profile.... :)
+          </p>
+
+          <h2 className="text-2xl  text-gray-400 mb-2" id="parent-modal-title">
+            SIGN UP
+          </h2>
+          <div class="flex flex-col items-center justify-center   w-full  h-2/5 mt-7 ">
+            <button className="h-10 rounded-lg w-full p-10 mb-2  flex items-center justify-center bg-gradient-to-b from-grad to-black">
+              <Link to="/shopper">
+                <h1 class="text-white text-5xl ">shopper</h1>
+              </Link>
+            </button>
+
+            <button className="h-10 rounded-lg w-full p-10 mt-2 flex items-center justify-center bg-gradient-to-r from-red-light to-blue-light">
+              <Link to="/seller">
+                <h1 class="text-white text-5xl  ">seller</h1>
+              </Link>
+            </button>
+          </div>
         </Box>
       </Modal>
     </Box>

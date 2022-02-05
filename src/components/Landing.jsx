@@ -2,11 +2,8 @@ import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { GoogleAuthProvider } from "firebase/auth";
-
-const provider = new GoogleAuthProvider();
 
 const style = {
   position: "absolute",
@@ -23,36 +20,8 @@ const style = {
   borderRadius: 5,
 };
 
-// export class Landing extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       a: false,
-//       open: false,
-//     };
-//   }
-
-//   handleClose = () => {
-//     this.setState({
-//       open: !this.state.open,
-//     });
-//   };
-
-//   componentDidMount() {
-//     this.timer();
-//     console.log(this.timer());
-//   }
-
-//   timer = () =>
-//     setTimeout(() => {
-//       this.setState({
-//         a: true,
-//       });
-//     }, 3000);
-
-//   render() {
 export default function Landing2() {
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
   const [a, setA] = useState(false);
   const [open, setOpen] = useState(false);
   const handleClose = () => {
@@ -63,10 +32,18 @@ export default function Landing2() {
       setA(true);
     }, 3000);
   };
+  let history = useHistory();
+  const move = () => {
+    history.push("/home");
+    console.log("working");
+  };
 
   useEffect(() => {
+    if (isAuthenticated == true) {
+      move();
+    }
     timer();
-  });
+  }, []);
   return (
     <div className="flex items-center justify-center w-screen  h-screen  ">
       <div className=" flex lg:flex-row flex-col items-center justify-evenly lg:justify-evenly w-full  h-full sm:h-screen ">
@@ -91,7 +68,6 @@ export default function Landing2() {
             <button
               onClick={() => {
                 loginWithRedirect();
-                console.log(process.env.MES_ID);
               }}
               className="h-10 rounded-lg w-full p-10 mb-4  flex items-center justify-center bg-gradient-to-b from-grad to-black"
             >

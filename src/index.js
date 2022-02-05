@@ -8,22 +8,10 @@ import { Auth0Provider } from "@auth0/auth0-react";
 const domain = "dev-m3cv9i3m.us.auth0.com";
 const clientId = "z3oLpjFqz81GGEAN4cOcjaHPTvaEaY6e";
 ReactDOM.render(
-  // <Auth0Provider
-  //   domain={domain}
-  //   clientId={clientId}
-  //   redirectUri={window.location.origin}
-  // >1
-  // <>
-  //   {" "}
-  //   <App />
-  // </>,
-
-  // //  </Auth0Provider>
-  // document.getElementById("root")
   <Auth0Provider
     domain={domain}
     clientId={clientId}
-    redirectUri={window.location.origin}
+    redirectUri={"http://localhost:3000/home"}
   >
     <React.StrictMode>
       <App />
