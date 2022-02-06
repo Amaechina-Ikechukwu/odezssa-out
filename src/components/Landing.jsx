@@ -34,7 +34,7 @@ export default function Landing2() {
   };
   let history = useHistory();
   const move = () => {
-    history.push("/home");
+    window.location.assign("http://localhost:3000/home");
     console.log("working");
   };
 

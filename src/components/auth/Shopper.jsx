@@ -102,7 +102,7 @@ export default function Shopper() {
         address: address,
         phone: phone,
       })
-      .then(Push())
+      .then(() => Push())
       .catch((e) => {
         seterror(e);
       });
@@ -127,7 +127,7 @@ export default function Shopper() {
       });
   };
   const Push = () => {
-    window.location.assign("http://localhost/3000/home");
+    window.location.assign("http://localhost:3000/home");
     console.log("pushed");
   };
   React.useEffect(() => {

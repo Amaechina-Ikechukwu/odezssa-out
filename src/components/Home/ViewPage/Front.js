@@ -51,6 +51,9 @@ export default function Front() {
   };
 
   React.useEffect(() => {
+    if (!isAuthenticated) {
+      history.push("/login");
+    }
     pop();
   }, [pop]);
   return (

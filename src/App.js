@@ -21,6 +21,8 @@ import Wishlist from "./components/Home/Wishlist";
 import Chats from "./components/Home/Chats";
 import Profile from "./components/Alter/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProfile } from "./callers/profile";
 
 import firebase from "firebase";
 import Landing from "./components/Landing2.jsx";
@@ -46,11 +48,16 @@ function App() {
     var id = sub[1];
     var isTrue;
   }
+  const dispatch = useDispatch();
+  let history = useHistory();
   const Push = () => {
     history.push("/signup");
+    // window.location.assign("http://localhost:3000/signup");
+  };
+  const move = () => {
+    history.push("/login");
   };
 
-  let history = useHistory();
   const [checks, setChecks] = React.useState();
   const [see, setsee] = React.useState(false);
   const checkStore = () => {
@@ -66,9 +73,12 @@ function App() {
         console.log(isTrue);
         setChecks(isTrue);
         localStorage.setItem("saved", "saved");
-
-        console.log(`it is ${see}`);
       });
+  };
+
+  const send = (data) => {
+    dispatch(getProfile({ user: data[0] }));
+    // console.log(Object.values(data));
   };
 
   React.useEffect(() => {
@@ -79,7 +89,26 @@ function App() {
     if (isTrue === false) {
       Push();
     }
-  }, [checkStore]);
+
+    // firebase
+    //   .firestore()
+    //   .collection("shopper")
+    //   .doc("prof")
+    //   .collection("profile")
+    //   .doc(id)
+    //   .get()
+    //   .then((snapshot) => {
+    //     var data = snapshot.data();
+    //     // var dataarr = Object.entries(data);
+    //     if (snapshot.exists) {
+    //       dispatch(getProfile({ user: data.Fullname }));
+    //       console.log(dispatch(getProfile({ user: data.Fullname })));
+    //     }
+
+    //     console.log(data);
+    //     // console.log(`${dataarr[0][0]} ${dataarr[0][1]}`);
+    //   });
+  }, [move, Push]);
 
   if (!isAuthenticated) {
     return (
@@ -97,6 +126,7 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/login" component={Landing2} />
         <Route path="/signup" component={Landing} />
         <Route path="/shopper" component={Shopper} />
         <Route path="/seller" component={Seller} />

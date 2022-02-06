@@ -124,7 +124,7 @@ export default function Menu() {
         <Box className="hidden md:hidden lg:block ">
           <Box className="flex flex-col items-center mb-2 justify-evenly mr-4 w-full mb-2 ">
             <NavLink
-              activeClassName=" bg-gray-500 hover:bg-gray-300  text-blue-50  p-4 rounded-md flex flex-row justify-evenly w-full mb-2 shadow-md opacity-80"
+              activeClassName=" bg-gradient-to-b from-grad to-black hover:bg-gray-300  text-blue-50  p-4 rounded-md flex flex-row justify-evenly w-full mb-2 shadow-md opacity-80"
               className="hover:bg-gray-100 hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-evenly items-center w-full mb-2"
               to="/home"
             >
@@ -132,7 +132,7 @@ export default function Menu() {
               <p className="text-1xl font-normal">Home </p>
             </NavLink>
             <NavLink
-              activeClassName=" bg-gradient-to-r from-red-light to-blue-light text-blue-50  p-4 rounded-md flex flex-row justify-evenly  w-full mb-2 opacity-80"
+              activeClassName="bg-gradient-to-b from-grad to-black text-blue-50  p-4 rounded-md flex flex-row justify-evenly  w-full mb-2 opacity-80"
               className="hover:bg-gray-100 hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-evenly items-center w-full mb-2"
               to="/market"
             >
@@ -140,7 +140,7 @@ export default function Menu() {
               <p className="text-1xl  font-normal">Market </p>
             </NavLink>
             <NavLink
-              activeClassName=" bg-gradient-to-r from-red-light to-blue-light text-blue-50  p-4 rounded-md flex flex-row justify-evenly w-full mb-2 opacity-80"
+              activeClassName="bg-gradient-to-b from-grad to-black text-blue-50  p-4 rounded-md flex flex-row justify-evenly w-full mb-2 opacity-80"
               className="hover:bg-gray-100 hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-evenly items-center w-full mb-2"
               to="/wishlist"
             >
@@ -148,7 +148,7 @@ export default function Menu() {
               <p className="text-1xl  font-normal">Wishlist </p>
             </NavLink>
             <NavLink
-              activeClassName=" bg-gradient-to-r from-red-light to-blue-light text-blue-50  p-4 rounded-md flex flex-row justify-evenly  w-full mb-2 opacity-80"
+              activeClassName="bg-gradient-to-b from-grad to-black text-blue-50  p-4 rounded-md flex flex-row justify-evenly  w-full mb-2 opacity-80"
               className="hover:bg-gray-100 hover:text-slate-50 text-gray-400 p-4 rounded-md flex flex-row justify-evenly items-center w-full mb-2"
               to="/chats"
             >
@@ -159,7 +159,7 @@ export default function Menu() {
         </Box>
         <Divider></Divider>
 
-        <Box className="p-2 w-full bg-gray-100 shadow-inner shadow-lg rounded-lg w-full mt-3 hidden lg:block">
+        <Box className="p-2 w-full bg-gray-100 rounded-lg w-full mt-3 hidden lg:block">
           <button
             onClick={() => logout()}
             className="hover:bg-gray-100 hover:text-slate-50 text-gray-400 p-2 rounded-md flex flex-row justify-evenly items-center w-full "
