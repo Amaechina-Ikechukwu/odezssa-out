@@ -23,6 +23,7 @@ import { ChatIcon } from "@heroicons/react/solid";
 import { ClipboardListIcon, PhoneIcon } from "@heroicons/react/outline";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector, useDispatch } from "react-redux";
 const style = {
   position: "absolute",
   top: "50%",
@@ -70,6 +71,7 @@ export default function Menu() {
   const [value, setValue] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const [openx, setOpenx] = React.useState(false);
+  var profile = useSelector((state) => state.profile.value[0]);
   const { logout } = useAuth0();
   let history = useHistory();
   const handleChange = (event, newValue) => {
@@ -171,10 +173,7 @@ export default function Menu() {
           </button>
         </Box>
 
-        <NavLink
-          to="/user/profile"
-          activeClassName="shadow-md p-2 rounded-full border-2 lg:border-0 md:p-4 border-gray-200"
-        >
+        <NavLink to="/user/profile">
           <Box
             display="flex"
             flexDirection={"column"}
@@ -182,10 +181,23 @@ export default function Menu() {
             justifyContent={"center"}
             className=" rounded-full "
           >
-            <Avatar className="rounded-full border-2 border-gray-400">
-              A R
-            </Avatar>
-            <p className="hidden md:block"> Alice Ray</p>
+            {profile.image === undefined ? (
+              ""
+            ) : (
+              <>
+                {" "}
+                <Avatar
+                  className="rounded-full border-2 border-gray-400"
+                  src={profile.image}
+                />
+                <p className="hidden md:block">
+                  {" "}
+                  {profile.Fullname.split(" ")
+                    .map((x) => x[0])
+                    .join("")}
+                </p>
+              </>
+            )}
           </Box>
         </NavLink>
       </Box>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Avatar, Button } from "@mui/material";
+import { Avatar, Button, Modal } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import { ArrowNarrowRightIcon } from "@heroicons/react/outline";
 import { useAuth0 } from "@auth0/auth0-react";
 import firebase from "firebase";
@@ -15,29 +15,41 @@ import {
 } from "react-router-dom";
 import storage from "firebase/storage";
 import { WindowSharp } from "@mui/icons-material";
-// import { storage } from "firebase/firestore";
+import { getProfile } from "../../callers/profile";
+import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
 
-export default function Shopper() {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "80vw",
+  height: "70vh",
+  bgcolor: "white",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+  overflow: "auto",
+};
+
+export default function UpdateProfile({ sopen, sclose }) {
   const { user } = useAuth0();
   console.log(user);
   const { name, picture, email } = user;
   const sub = user.sub.split("|");
   const id = sub[1];
-  const names = name.split(" ");
-  // console.log(names[1].split("").splice(0, 1));
-  const [fullName, setFullName] = useState(name);
-  const [Email, setEmail] = useState(email);
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [CPass, setCPass] = useState("");
-  const [image, setImage] = useState();
-  const [address, setAddress] = useState("");
-  const [uri, setUri] = useState("");
+  var profile = useSelector((state) => state.profile.value[0]);
+  const dispatch = useDispatch();
+  const [fullName, setFullName] = useState(profile.Fullname);
+  const [Email, setEmail] = useState(profile.email);
+  const [country, setCountry] = useState(profile.country);
+  const [state, setState] = useState(profile.state);
+  const [image, setImage] = useState(profile.image);
+  const [address, setAddress] = useState(profile.address);
+  const [uri, setUri] = useState(profile.image);
   const [load, setLoad] = useState("");
   const [error, seterror] = useState("");
-  let history = useHistory();
   const onPick = (event) => {
     setImage(event.target.files[0]);
     uploadImage(event);
@@ -93,60 +105,29 @@ export default function Shopper() {
       .doc("prof")
       .collection("profile")
       .doc(id)
-      .set({
+      .update({
         Fullname: fullName,
-        password: password,
+        email: Email,
         image: uri,
         country: country,
         state: state,
         address: address,
-        phone: phone,
-        email: Email,
       })
-      .then(() => Push())
+      .then(sclose)
       .catch((e) => {
         seterror(e);
       });
   };
-  const checkStore = () => {
-    firebase
-      .firestore()
-      .collection("shopper")
-      .doc("prof")
-      .collection("profile")
-      .doc(id)
-      .get()
-      .then((snapshot) => {
-        if (snapshot.exists == true) {
-          Push();
-        } else {
-          localStorage.setItem("saved", undefined);
-        }
-      })
-      .catch((e) => {
-        seterror(e);
-      });
-  };
-  const Push = () => {
-    window.location.assign("http://localhost:3000/home");
-    console.log("pushed");
-  };
-  React.useEffect(() => {
-    checkStore();
-  }, [checkStore]);
-  console.log(uri);
   return (
-    <Box
-      class="flex flex-col w-screen h-screen p-1 lg:p-5"
-      component="form"
-      noValidate
-      autoComplete="off"
+    <Modal
+      open={sopen}
+      onClose={sclose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
     >
-      <h1 className="text-black text-5xl p-3 ">elegant shopper</h1>
-
-      <div class="flex flex-col lg:flex-row justify-start w-full lg:px-4">
-        <div class="flex flex-col  items-start justify-center lg:w-2/4 lg:border-purple-200 lg:border-2 p-3 lg:mr-8 rounded-lg lg:border-dashed w-full ">
-          <div className="lg:w-4/5">
+      <Box sx={style}>
+        <Box>
+          <div className=" flex flex-col items-center justify-center w-full ">
             <TextField
               id="outlined-basic"
               label="full name"
@@ -200,62 +181,22 @@ export default function Shopper() {
               defaultValue={address}
               onChange={(e) => setAddress(e.target.value)}
             />
-
-            <TextField
-              id="outlined-basic"
-              label="phone number"
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              onChange={(e) => setPhone(e.target.value)}
-            />
           </div>
-        </div>
 
-        <div class="lg:ml-8 lg:border-purple-200 lg:border-dashed rounded-lg lg:border-2 p-3 lg:w-2/4 w-full">
-          <div className="w-4/5 flex flex-col items-center justify-center w-full">
-            <div className="w-full lg:w-4/5 ">
-              <TextField
-                id="outlined-basic"
-                label="password"
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                onChange={(e) => setPassword(e.target.value)}
-              />
-
-              <TextField
-                id="outlined-basic"
-                label="confirm password"
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                onChange={(e) => setCPass(e.target.value)}
-              />
-
-              {password !== CPass && CPass.length > 5 ? (
-                <div className="w-full bg-red-200  text-red-400 p-2 rounded-md mb-2">
-                  Password does not match{" "}
-                </div>
-              ) : null}
-            </div>
+          <div className=" flex flex-col items-center justify-center w-full">
             <div className=" w-full flex flex-col items-center">
               <Avatar
-                sx={{ width: 150, height: 150 }}
-                src={image ? uri : user.picture}
+                sx={{ width: 120, height: 120 }}
+                src={uri ? uri : image}
               />
-              {/* {image !== ""
-                  ? null
-                  : `${names[0].split("").splice(0, 1)}${names[1]
-                      .split("")
-                      .splice(0, 1)}`} */}
+
               <div className="w-full bg-yellow-100  text-yellow-600 p-2 rounded-md mt-1">
                 The photo uploads automatically when selected, if you get an
                 error, please press Upload button
               </div>
 
-              <div className="w-full flex flex-row items-center justify-evenly">
-                <button className="h-10 rounded-lg lg:w-2/5 w-2/5 p-6 mt-2  flex items-center justify-center bg-gray-500">
+              <div className="w-full flex flex-col md:flex-row items-center justify-evenly">
+                <button className="h-10 rounded-lg lg:w-2/5 w-4/5 p-6 mt-2  flex items-center justify-center bg-gray-500">
                   <input
                     class="text-white text-1xl md:text-1xl "
                     type="file"
@@ -265,7 +206,7 @@ export default function Shopper() {
                 </button>
                 <button
                   onClick={uploadImage}
-                  className="h-10 rounded-lg lg:w-2/5 w-2/5 p-6 mt-2  flex items-center justify-center bg-gray-700"
+                  className="h-10 rounded-lg lg:w-2/5 w-4/5 p-6 mt-2  flex items-center justify-center bg-gray-700"
                 >
                   <h1 class="text-white text-1xl md:text-2xl ">
                     {load !== "" ? `${load}%` : "upload image"}
@@ -285,24 +226,19 @@ export default function Shopper() {
                 </div>
               ) : null} */}
 
-              {error !== "" ? (
-                <div className="w-full bg-red-200  text-red-400 p-2 rounded-md">
-                  {error}
-                </div>
-              ) : null}
               <button
                 onClick={submit}
-                className="h-10 rounded-lg w-4/5 p-8 mt-14 flex items-center justify-evenly bg-gradient-to-r from-red-light to-blue-light"
+                className="h-10 rounded-lg  p-8 mt-14 flex items-center justify-evenly bg-gradient-to-r from-red-light to-blue-light"
               >
                 <h1 class="text-white text-2xl md:text-4xl  ">
-                  start shopping
+                  complete update
                 </h1>
                 <ArrowNarrowRightIcon className="w-20 text-white h-20" />
               </button>
             </div>
           </div>
-        </div>
-      </div>
-    </Box>
+        </Box>
+      </Box>
+    </Modal>
   );
 }

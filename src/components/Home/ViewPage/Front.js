@@ -7,6 +7,8 @@ import Promoted from "./Promoted";
 import Vendors from "./Vendors";
 import { useAuth0 } from "@auth0/auth0-react";
 import firebase from "firebase";
+import { useSelector, useDispatch } from "react-redux";
+import { getProfile } from "../../../callers/profile";
 
 const style = {
   position: "absolute",
@@ -32,6 +34,8 @@ export default function Front() {
   }
   let history = useHistory();
   const [open, setOpen] = React.useState(false);
+  var data;
+  const dispatch = useDispatch();
   const pop = () => {
     firebase
       .firestore()
@@ -49,13 +53,29 @@ export default function Front() {
       })
       .catch((e) => {});
   };
+  const fire = () => {
+    firebase
+      .firestore()
+      .collection("shopper")
+      .doc("prof")
+      .collection("profile")
+      .doc(id)
+      .get()
+      .then((snapshot) => {
+        data = snapshot.data();
+        dispatch(getProfile(data));
+
+        // console.log(data);
+      });
+  };
 
   React.useEffect(() => {
     if (!isAuthenticated) {
       history.push("/login");
     }
     pop();
-  }, [pop]);
+    fire();
+  }, [pop, fire]);
   return (
     <Box
       className=" w-full h-screen p-1"
